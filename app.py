@@ -3,7 +3,7 @@ import google.generativeai as genai
 
 # ✅ Configure API Key securely
 if "GOOGLE_API_KEY" in st.secrets:
-    api_key = st.secrets["AIzaSyAIZINFcr_D4rCFTgO9V9G9Rlo4xbL6gsA"]
+    api_key = st.secrets["GOOGLE_API_KEY"]
     genai.configure(api_key=api_key)
 else:
     st.error("⚠️ API Key is missing. Go to Streamlit Cloud → Settings → Secrets and add your API key.")
