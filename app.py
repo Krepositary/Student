@@ -4,12 +4,12 @@ import google.generativeai as genai
 import os
 
 # ✅ Use Streamlit secrets management or environment variables for security
-GOOGLE_API_KEY = os.getenv("AIzaSyBqGySM48uyNlErVXI9NA_dkScRpE-JIJg")  # Set this in Streamlit secrets
+GOOGLE_API_KEY = os.getenv("AIzaSyAIZINFcr_D4rCFTgO9V9G9Rlo4xbL6gsA")  # Set this in Streamlit secrets
 if not GOOGLE_API_KEY:
     st.error("API Key is missing. Set it as an environment variable or in Streamlit secrets.")
     st.stop()
 
-genai.configure(api_key=GOOGLE_API_KEY)
+genai.configure(api_key=AIzaSyAIZINFcr_D4rCFTgO9V9G9Rlo4xbL6gsA)
 
 # ✅ Model initialization
 generation_config = {
