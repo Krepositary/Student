@@ -1,12 +1,9 @@
 streamlit>=1.30.0
-google-generativeai==0.4.1
+streamlit>=1.30.0
+openai>=1.12.0
 streamlit
-google-auth
-google-auth-oauthlib
-google-auth-httplib2
+
 requests
-google-generativeai
-streamlit
-google-generativeai
+
 datetime
 
