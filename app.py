@@ -12,16 +12,17 @@ else:
 # ✅ AI Response Generator
 def get_ai_response(prompt, fallback_message="⚠️ AI response unavailable. Please try again later."):
     try:
-        model = genai.GenerativeModel("gemini-1.5-pro")
+        model = genai.GenerativeModel("gemini-pro")  # ✅ FIXED
         response = model.generate_content(prompt)
         return response.text.strip() if hasattr(response, "text") and response.text.strip() else fallback_message
     except Exception as e:
         return f"⚠️ AI Error: {str(e)}\n{fallback_message}"
 
+
 # ✅ Streamlit UI Configuration
 st.set_page_config(page_title="Smart Restaurant Menu Management App", layout="wide")
 
-st.title("🍽️ Smart Restaurant Menu Management with Gemini 1.5 Pro")
+st.title("🍽️ Intelligent Restaurant Food Service System: A Decision centric Smart Approach")
 st.write("🚀 Manage events, recommend menus, and optimize leftovers using GenAI.")
 
 # 🎯 **Event Manager**
