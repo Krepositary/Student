@@ -1,21 +1,29 @@
 import streamlit as st
 
-import google.generativeai as genai
+from openai import OpenAI
 
-# ✅ Configure API Key securely
-if "GOOGLE_API_KEY" in st.secrets:
-    api_key = st.secrets["GOOGLE_API_KEY"]
-    genai.configure(api_key=api_key)
+if "OPENAI_API_KEY" in st.secrets:
+    client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 else:
-    st.error("⚠️ API Key is missing. Go to Streamlit Cloud → Settings → Secrets and add your API key.")
+    st.error("⚠️ API Key is missing. Go to Streamlit Cloud → Settings → Secrets and add your OpenAI API key.")
     st.stop()
 
-# ✅ AI Response Generator
+
+# ✅ AI Response Generator (OpenAI)
 def get_ai_response(prompt, fallback_message="⚠️ AI response unavailable. Please try again later."):
     try:
-        model = genai.GenerativeModel("gemini-pro")  # ✅ FIXED
-        response = model.generate_content(prompt)
-        return response.text.strip() if hasattr(response, "text") and response.text.strip() else fallback_message
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",  # ✅ Stable & cost-effective
+            messages=[
+                {"role": "system", "content": "You are an expert AI assistant for smart restaurant management."},
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0.7,
+            max_tokens=800
+        )
+
+        return response.choices[0].message.content.strip()
+
     except Exception as e:
         return f"⚠️ AI Error: {str(e)}\n{fallback_message}"
 
